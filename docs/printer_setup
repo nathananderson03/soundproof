@@ -1,0 +1,36 @@
+Setup Selphy Printers
+=====================
+
+Setup printer
+ configure printer host name to "Canon CP910 <number>"
+  where <number> is 1 or 2
+  (The name isn't important, but let's make things consistent)
+ configure printer wifi to join network
+
+Add printer to OS-X
+ go to OS-X System preferences > Printers & Scanners > + > Add Printer or Scanner
+ select printer
+
+may require drivers from canon website?
+http://support-au.canon.com.au/contents/AU/EN/0100585102.html
+
+
+
+CUPS Pooling
+============
+Join the printers into a single group managed by OS-X
+http://hints.macworld.com/article.php?story=20061016090420177
+
+Enable cups http interface
+> cupsctl WebInterface=yes
+
+browse to:
+ http://127.0.0.1:631/printers/
+
+Create a CUPS class for the printers
+ Administration > Classes > Add Class
+  Name = "Selphys" (must be same name as in settings.PRINTER_NAME)
+  Description = anything
+  Location = anything
+  Select both printers and add
+ Save

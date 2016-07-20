@@ -1,0 +1,11 @@
+{% extends 'admin:admin/change_form.html' %}
+
+{% block object-tools-items %}
+    {% if original.admin_links %}
+        {% for href,label in original.admin_links %}
+        <li><a class="viewsitelink" href="{{href}}">{{label}}</a></li>
+        {% endfor %}
+    {% else %}
+        {{block.super}}
+    {% endif %}
+{% endblock %}

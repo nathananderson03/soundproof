@@ -1,0 +1,8 @@
+<div class="row" id="images">
+    {% for image in images %}
+    <div class="col-xs-4">
+        <img class="photo" src="{{image.get_image_url}}"
+            data-id="{{image.id}}"/>
+    </div>
+    {% endfor %}
+</div>

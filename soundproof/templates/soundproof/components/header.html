@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<div class="row sp-logo">
+    <div class="col-xs-12">
+        <img src="{% static 'soundproof/img/admin/feedyoursocial.png' %}"/>
+        {% if masthead_title %}
+        <h1>{{masthead_title}}</h1>
+        {% endif %}
+    </div>
+</div>
+{% if override_tools %}
+    <div class="row sp-tools">
+        <h2 class="overridden">{{override_tools}}</h2>
+    </div>
+{% else %}
+    {% if user.is_authenticated %}
+    <div class="row sp-tools">
+        <div class="col-xs-7 sp-breadcrumb">
+            <div class="breadcrumbs">
+                <a href="/admin/">Home</a>
+                &#8250; <a href="/admin/soundproof/">Soundproof</a>
+                &#8250; <a href="/admin/soundproof/display/">Displays</a>
+                &#8250; {{display.name}}
+            </div>
+        </div>
+        <div class="col-xs-5 sp-links">
+            Welcome, {{user.username}}.
+            <a href="{% url 'admin:password_change' %}">Change password</a>
+            /
+            <a href="{% url 'admin:logout' %}">Log out</a>
+        </div>
+    </div>
+    {% endif %}
+{% endif %}

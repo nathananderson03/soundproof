@@ -1,0 +1,61 @@
+@media (min-width: 800px) {
+    body {
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+}
+.container-fluid {
+    box-shadow: 7px 10px 20px -15px rgba(0,0,0,0.43);
+    max-width: 800px;
+    background: white;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.container-fluid.nopad {
+    padding: 0;
+}
+.container-fluid.nopad .row {
+    margin: 0;
+}
+body {
+    background-color: #f7f7f7 !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.sp-logo {
+    background-color: #1f83b2;
+    padding: 40px 40px 23px;
+}
+.sp-logo h1 {
+    float: right;
+    margin: 12px 0 0;
+    color: white;
+}
+.sp-tools {
+    background-color: #4c9cc1;
+    padding: 10px 40px;
+    color: white;
+    font-size: 12px;
+}
+.sp-tools .sp-breadcrumb {
+}
+.sp-tools .sp-links {
+    text-align: right;
+}
+.sp-tools .overridden {
+    text-align: right;
+    margin: 0;
+    font-weight: bold;
+}
+h1 {
+    font-size: 25px;
+    line-height: 1.4;
+    font-weight: lighter;
+    color: #1f83b2;
+}
+.sp-tools a {
+    color: #b7dfef;
+}
+.sp-tools a:hover {
+    color: #8DC9E1;
+}

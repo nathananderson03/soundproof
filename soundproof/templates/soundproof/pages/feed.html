@@ -1,0 +1,82 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+    <head>
+        <title>Feed</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="{% static 'soundproof/css/feed.css' %}"/>
+        <style>
+            #images .img {
+                {% if display.tile_width %}
+                width: {{display.tile_width}};
+                height: {{display.tile_width}};
+                {% endif %}
+                {% if display.tile_margin %}
+                margin: {{display.tile_margin}};
+                {% endif %}
+            }
+            #images .blowup .wrap2 {
+                background-color: {{display.border_color}};
+                position: relative;
+            }
+            {% if display.logo %}
+            #images .blowup .wrap2:after {
+                content: '';
+                width: 150px;
+                height: 150px;
+                background-image: url({{display.logo.url|safe}});
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: bottom right;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+            {% endif %}
+            {{display.css|safe}}
+        </style>
+
+        <script src="{% static 'js-cam-motion/lib/circularbuffer.js' %}"></script>
+        <script src="{% static 'js-cam-motion/lib/events.js' %}"></script>
+        <script src="{% static 'js-cam-motion/lib/detectors.js' %}"></script>
+        <script src="{% static 'js-cam-motion/lib/main.js' %}"></script>
+        <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+        <script src="{% static 'soundproof/js/csrf.js' %}"></script>
+        <script src="{% static 'soundproof/js/feed.js' %}"></script>
+    </head>
+    <body class="animate">
+        <div id="images" data-speed="{{display.speed}}"
+            data-moderation="{{display.moderation}}"
+            data-display-id="{{display.id}}"
+            data-tilewidth="{{display.tile_width}}"
+            data-last-ts="{{display.get_highest_ts}}"
+            data-min-flips="{{display.minimum_flips}}"
+            data-load-counts="{{display.images_to_load}}"
+        ></div>
+        <canvas id="canvas-blended" width="640" height="480"></canvas>
+        <div data-template class="blowup">
+            <div class="wrap1">
+            <div class="wrap2">
+                <img src=""/>
+                <div class="meta">
+                    <p>
+                        @<span class="username">username</span>, 
+                        <span class="likes-icon"></span><span
+                            class="likes-count">23</span> likes,
+                        <span class="comments-icon"></span><span
+                            class="comments-count">23</span> comments,
+                        <span class="timestamp"></span>
+                    </p>
+                    <p class="caption"></p>
+                </div>
+                <div class="debug">
+                    local: <span class="local-timestamp"></span><br/>
+                    remote: <span class="local-timestamp"></span><br/>
+                    <a>link</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>

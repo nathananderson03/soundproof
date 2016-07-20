@@ -1,0 +1,129 @@
+.transition(@props){
+    transition: @props;
+    -moz-transition: @props;
+    -webkit-transition: @props;
+    -ms-transition: @props;
+}
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+body {
+    background: rgb(22, 131, 172);
+    color: white;
+    font-family: cambria, my-cambria;
+    #header {
+        background: white;
+        padding: 10px;
+        .logo {
+            width: auto;
+            height: 70px;
+            margin-left: -22px;
+        }
+        .menu {
+            //color: rgb(41, 39, 101);
+            color: rgb(22, 131, 172);
+            margin-top: 30px;
+            float: right;
+            > * {
+                display: inline-block;
+                &.twit {
+                }
+                &.inst {
+                }
+            }
+        }
+    }
+    #videos {
+        position: relative;
+        iframe {
+            width: 100%;
+            height: 40vw;
+            display: none;
+            &:first-child {
+                display: block;
+            }
+        }
+        .video-controls {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            span {
+                background: rgba(255,255,255,0.5);
+                border-radius: 100px;
+                cursor: pointer;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                box-shadow: 0 0 5px 2px rgba(255,255,255,0.5);
+                margin-left: 10px;
+                text-align: center;
+                line-height: 20px;
+            }
+        }
+    }
+    #cta {
+        text-align: center;
+        font-size: 36px;
+        padding: 100px 0;
+    }
+    #feed {
+        position: relative;
+        > div {
+            .transition(~'left 0.2s ease-in-out, top 0.2s ease-in-out');
+            position: absolute;
+            width: 30vw;
+            background: white;
+            color: black;
+            overflow: hidden;
+            .img {
+                background: grey;
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            .main {
+                padding: 5px 10px;
+                .text {
+                }
+                .age {
+                    font-size: 0.7em;
+                }
+            }
+            .footer {
+                padding: 5px 10px;
+                background: lightgrey;
+                height: 50px;
+                .mug {
+                    float: left;
+                    background: grey;
+                    width: 40px;
+                    height: 40px;
+                }
+                .detail {
+                    float: left;
+                    margin-left: 5px;
+                    .author-name {
+                        font-weight: bold;
+                    }
+                }
+                .share {
+                    margin-top: 10px;
+                    float: right;
+                }
+            }
+        }
+    }
+    #footer {
+        text-align: center;
+    }
+    [data-template] {
+        display: none;
+    }
+}

@@ -1,0 +1,14 @@
+{% spaceless %}
+{% for image in images %}
+<div class="img">
+    <img class="front" src="{{image.get_image_url}}" 
+        data-id="{{image.id}}"
+        data-meta="{{image.meta}}"
+        data-remote-timestamp="{{image.remote_timestamp}}"
+        data-remote-ts="{{image.remote_unixtime}}"
+        data-local-timestamp="{{image.created}}"
+        data-page-url="{{image.page_url}}"
+    />
+</div>
+{% endfor %}
+{% endspaceless %}

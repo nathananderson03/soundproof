@@ -1,0 +1,226 @@
+{% extends 'soundproof/base-bootstrap.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    {{block.super}}
+    <style>
+        .list-item {
+            padding: 0 0 10px;
+        }
+        .list-item img {
+            width: 100%;
+            display: block;
+            border-radius: 500px;
+        }
+        #main-bit {
+            padding-top: 20px;
+        }
+        .images-by-likes img {
+            width: 100%;
+        }
+        .images-by-likes p {
+            text-align: center;
+        }
+        .container-fluid.bg {
+            background-color: rgb(197,223,237);
+        }
+    </style>
+    <script type="text/javascript"
+        src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+    {% comment %}
+    <script type="text/javascript"
+        src="{% static 'Chart.js/Chart.min.js' %}"></script>
+    {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/nv.d3.css' %}"/>
+    <script type="text/javascript"
+        src="{% static 'js/d3.v3.js' %}"></script>
+    <script type="text/javascript"
+        src="{% static 'js/nv.d3.js' %}"></script>
+
+    <script type="text/javascript">
+        var raw_data = {{graph_json|safe}};
+        var tag_data = {{tags_json|safe}};
+    </script>
+    <script type="text/javascript"
+        src="{% static 'soundproof/js/analytics.js' %}"></script>
+{% endblock %}
+
+{% block inner %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <h2>{{display.name}}</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="date-from-input">From</label>
+                        <input id="date-from-input" class="form-control" type="date" 
+                            name="date_from" value="{{date_from|date:'Y-m-d'}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="date-to-input">To</label>
+                        <input id="date-to-input" class="form-control" type="date"
+                            name="date_to" value="{{date_to|date:'Y-m-d'}}"/>
+                    </div>
+                    <button class="btn btn-default" type="submit">Update</button>
+                </form>
+            </div>
+            <div class="col-xs-12 col-sm-8" id="main-bit">
+                <div class="row"><div class="col-xs-12">
+                    Activity
+                </div></div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3>{{image_count}}</h3>
+                        Photos Shared
+                    </div>
+                    <div class="col-xs-6">
+                        <h3>{{poster_count}}</h3>
+                        Unique Contributors
+                    </div>
+                </div>
+
+                <div class="row"><div class="col-xs-12"><hr/></div></div>
+
+                <div class="row"><div class="col-xs-12">
+                    Reach
+                </div></div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3>{{follower_count}}</h3>
+                        Social Reach
+                        {% if stale %}
+                        <small>({{stale}} more users to count)</small>
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-6">
+                        <h3>{{social_impressions}}</h3>
+                        Social Impressions
+                    </div>
+                </div>
+
+                <div class="row"><div class="col-xs-12"><hr/></div></div>
+
+                <div class="row"><div class="col-xs-12">
+                    Engagement
+                </div></div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3>{{like_count}}</h3>
+                        Likes Generated
+                    </div>
+                    <div class="col-xs-6">
+                        <h3>{{comment_count}}</h3>
+                        Comments Generated
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg">
+        <br/>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <h4>Highest Contributors</h4>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h4>Most Influential</h4>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h4>Highest Engagement Photos</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                {% for user in user_by_post_count|slice:'0:5' %}
+                <a href="{{user.instagram_page_url}}" target="_blank">
+                    <div class="row list-item">
+                        <div class="col-xs-4">
+                            <img src="{{user.mug_url}}"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <p>@&nbsp;{{user.username}}</p>
+                            <p><small>{{user.image_count}} photos</small></p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                {% for user in user_by_follower_count|slice:'0:5' %}
+                <a href="{{user.instagram_page_url}}" target="_blank">
+                    <div class="row list-item">
+                        <div class="col-xs-4">
+                            <img src="{{user.mug_url}}"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <p>@&nbsp;{{user.username}}</p>
+                            <p><small>{{user.follower_count}} followers</small></p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                {% for image in images_by_engagement|slice:'0:5' %}
+                <a href="{{image.page_url}}" target="_blank">
+                    <div class="row list-item">
+                        <div class="col-xs-4">
+                            <img src="{{image.get_image_url}}"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <p>@&nbsp;{{image.user.username}}</p>
+                            <p><small>{{image.points}} points</small></p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row"><div class="col-xs-12"><h3>Most Liked Photos</h3></div></div>
+
+        <div class="row images-by-likes">
+            {% for image in images_by_likes|slice:'0:6' %}
+            <div class="col-xs-12 col-sm-2">
+                <a href="{{image.page_url}}">
+                    <img src="{{image.get_image_url}}"/>
+                    <p>
+                        &hearts; {{image.like_count}}<br/>
+                        <small>@{{image.user.username}}</small>
+                    </p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container-fluid bg">
+        <div class="row"><div class="col-xs-12">
+            <h3>Posting by time</h3>
+            <div id="images-graph"><svg height="300"></svg></div>
+        </div></div>
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="row"><div class="col-xs-12">
+            <h3>Engagement by time</h3>
+        </div></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="engagement-graph"><svg height="300"></svg></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg">
+        <div class="row pad"><div class="col-xs-12">
+            <h3>Most Used Hashtags</h3>
+            <div id="tag-graph"><svg height="300"></svg></div>
+        </div></div>
+    </div>
+{% endblock inner %}

@@ -1,0 +1,51 @@
+{% extends 'soundproof/base-bootstrap.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    {{block.super}}
+    <title>Moderate</title>
+    <meta http-equiv="refresh" content="60"/>
+    <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script src="{% static 'soundproof/js/moderate.js' %}"></script>
+{% endblock %}
+
+{% block inner %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 data-display-id="{{display.id}}">Moderating {{display.name}}</h1>
+                <h3>Moderation is set to: {{display.get_moderation_display}}</h3>
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            {% for image in images %}
+            <div class="col-xs-6 col-sm-3">
+                <div class="thumbnail">
+                    <img src="{{image.get_image_url}}" data-id="{{image.id}}" data-meta="{{image.meta}}"/>
+                    <div class="caption">
+                        {% if display.moderation != 'off' %}
+                            {% for moderation in image.displayimage.all %}
+                                {% if not moderation.approved %}
+                                    <p><a href="#" class="btn btn-danger image-blacklisted" role="button" data-moderate-image data-image-id="{{image.id}}" data-display-slug="{{display.slug}}">Approve</a></p>
+                                {% else %}
+                                    <p><a href="#" class="btn btn-primary image-whitelisted" role="button" data-moderate-image data-image-id="{{image.id}}" data-display-slug="{{display.slug}}">Reject</a></p>
+                                {% endif %}
+                            {% empty %}
+                                {% if display.moderation == 'whitelist' %}
+                                    <p><a href="#" class="btn btn-danger image-blacklisted" role="button" data-moderate-image data-image-id="{{image.id}}" data-display-slug="{{display.slug}}">Approve</a></p>
+                                {% elif display.moderation == 'blacklist' %}
+                                    <p><a href="#" class="btn btn-primary image-whitelisted" role="button" data-moderate-image data-image-id="{{image.id}}" data-display-slug="{{display.slug}}">Reject</a></p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock inner %}

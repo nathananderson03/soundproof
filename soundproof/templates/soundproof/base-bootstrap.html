@@ -1,0 +1,16 @@
+{% extends 'soundproof/base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'soundproof/css/general.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid nopad">
+        {% include 'soundproof/components/header.html' %}
+    </div>
+    {% block inner %}{% endblock %}
+{% endblock content %}

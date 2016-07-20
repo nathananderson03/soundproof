@@ -1,0 +1,9 @@
+{
+     "name": "my-project-name",
+     "version": "0.1.0",
+     "main": "Gruntfile.js",
+     "devDependencies": {
+         "grunt-contrib-less": "~0.11.0",
+         "grunt-contrib-watch": "~0.6.1"
+     }
+}

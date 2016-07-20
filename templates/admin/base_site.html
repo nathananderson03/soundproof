@@ -1,0 +1,9 @@
+{% extends 'admin:admin/base_site.html' %}
+
+{% load staticfiles %}
+
+{% block extrastyle %}
+    {{block.super}}
+    <link rel="stylesheet"
+        href="{% static 'soundproof/css/admin.css' %}"/>
+{% endblock %}

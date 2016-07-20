@@ -1,0 +1,49 @@
+{% extends 'soundproof/base-bootstrap.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    {{block.super}}
+    <title>Print</title>
+    <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
+    <script src="{% static 'js/spin.min.js' %}"></script>
+    <script src="{% static 'soundproof/js/print.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'soundproof/css/print.css' %}"/>
+{% endblock %}
+
+{% block inner %}
+    <div data-mode="select">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12"><h1 id="cta-select">Select an image</h1></div>
+                <div class="col-xs-12"><h1 id="cta-preview">Preview print</h1></div>
+                <div class="col-xs-12"><hr/></div>
+            </div>
+            {% include 'soundproof/components/printer-photos.html' %}
+            {# this next part isnt visible, but still used to indicate which frame is to be used (always the first) #}
+            <div class="row" id="frames">
+                {% for frame in frames %}
+                <div class="col-lg-1 col-md-2 col-sm-3 col-xs-6">
+                    <img class="frame {% if forloop.first %}selected{% endif %}"
+                        src="{{frame.url}}" data-id="{{frame.id}}"/>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container-fluid" id="preview">
+            <div class="row">
+                <div class="col-xs-12"><img/></div>
+            </div>
+            <div class="row controls">
+                <div class="col-xs-6">
+                    <button class="btn btn-default btn-cancel"
+                        role="button">Cancel</button>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-primary btn-print"
+                        role="button">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock inner %}

@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+body {
+  background: #1683ac;
+  color: white;
+  font-family: cambria, my-cambria;
+}
+body #header {
+  background: white;
+  padding: 10px;
+}
+body #header .logo {
+  width: auto;
+  height: 70px;
+  margin-left: -22px;
+}
+body #header .menu {
+  color: #1683ac;
+  margin-top: 30px;
+  float: right;
+}
+body #header .menu > * {
+  display: inline-block;
+}
+body #videos {
+  position: relative;
+}
+body #videos iframe {
+  width: 100%;
+  height: 40vw;
+  display: none;
+}
+body #videos iframe:first-child {
+  display: block;
+}
+body #videos .video-controls {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+body #videos .video-controls span {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  cursor: pointer;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.5);
+  margin-left: 10px;
+  text-align: center;
+  line-height: 20px;
+}
+body #cta {
+  text-align: center;
+  font-size: 36px;
+  padding: 100px 0;
+}
+body #feed {
+  position: relative;
+}
+body #feed > div {
+  transition: left 0.2s ease-in-out, top 0.2s ease-in-out;
+  -moz-transition: left 0.2s ease-in-out, top 0.2s ease-in-out;
+  -webkit-transition: left 0.2s ease-in-out, top 0.2s ease-in-out;
+  -ms-transition: left 0.2s ease-in-out, top 0.2s ease-in-out;
+  position: absolute;
+  width: 30vw;
+  background: white;
+  color: black;
+  overflow: hidden;
+}
+body #feed > div .img {
+  background: grey;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+body #feed > div .main {
+  padding: 5px 10px;
+}
+body #feed > div .main .age {
+  font-size: 0.7em;
+}
+body #feed > div .footer {
+  padding: 5px 10px;
+  background: lightgrey;
+  height: 50px;
+}
+body #feed > div .footer .mug {
+  float: left;
+  background: grey;
+  width: 40px;
+  height: 40px;
+}
+body #feed > div .footer .detail {
+  float: left;
+  margin-left: 5px;
+}
+body #feed > div .footer .detail .author-name {
+  font-weight: bold;
+}
+body #feed > div .footer .share {
+  margin-top: 10px;
+  float: right;
+}
+body #footer {
+  text-align: center;
+}
+body [data-template] {
+  display: none;
+}

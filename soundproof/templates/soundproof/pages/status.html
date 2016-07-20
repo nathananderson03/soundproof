@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Status</title>
+        <meta http-equiv="refresh" content="5"/>
+        <style>
+            .ip {
+                width: 45%;
+                display: inline-block;
+                vertical-align: top;
+            }
+            body {
+                font-size: 0.9em;
+            }
+            form {
+                display: inline;
+            }
+        </style>
+    </head>
+    <body>
+        {% for data in status.values|dictsort:"ip" %}
+        {% if data.delta.total_seconds < 1800 %}
+        <div class="ip"">
+            {% for k, v in data.items %}
+            <p>{{k}}: {{v}}</p>
+            {% endfor %}
+
+            <p><strong>Directives</strong></p>
+            
+            <form method="post">
+                <input type="hidden" name="ip" value="{{data.ip}}"/>
+                <input type="hidden" name="action" value="rename"/>
+                <input name="name" value="{{data.name}}"/>
+                <button type="submit">Rename</button>
+            </form>
+
+            <form method="post">
+                <input type="hidden" name="ip" value="{{data.ip}}"/>
+                <input type="hidden" name="action" value="reload"/>
+                <button type="submit">Reload</button>
+            </form>
+            <hr/>
+        </div>
+	{% endif %}
+        {% endfor %}
+    </body>
+</html>

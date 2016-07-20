@@ -1,0 +1,122 @@
+/* generic */
+body {
+    background: #f7f7f7 !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #666;
+}
+a:link, a:visited {
+    color: #b7dfef !important;
+    text-decoration: none !important;
+}
+a:hover {
+    color: #8DC9E1 !important;
+}
+h1 {
+    color: #1f83b2;
+    font-size: 25px;
+    line-height: 1.4;
+    font-weight: lighter;
+    text-transform: capitalize;
+}
+body .required label, body label.required {
+    font-weight: normal !important;
+}
+body .submit-row {
+    border: 0;
+    background: none;
+}
+.button.default, input[type=submit].default, .submit-row input.default,
+.button, input[type=submit], input[type=button], .submit-row input,
+a.deletelink:link, a.deletelink:visited {
+    display: inline-block;
+    vertical-align: middle;
+    background: #4c9cc1;
+    line-height: normal;
+    font-weight: bold;
+    font-size: 11px;
+    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+    color: white !important;
+    padding: 9px 20px;
+    float: none;
+    margin: 0;
+    border: 2px outset rgb(192,192,192);
+    height: 35px;
+    box-sizing: border-box;
+}
+body .submit-row p.deletelink-box {
+    display: inline;
+    float: none;
+    margin: 0;
+    line-height: 100%;
+}
+body .submit-row input {
+    margin: 0;
+}
+#container {
+    margin: 80px auto;
+    border: 0 !important;
+    box-shadow: 7px 10px 20px -15px rgba(0,0,0,0.43);
+    background: white;
+}
+#header #branding {
+    background-color: #1f83b2;
+    background-image: url('/static/soundproof/img/admin/feedyoursocial.png');
+    background-position: 40px 40px;
+    background-repeat: no-repeat;
+    float: none;
+    height: 112px;
+}
+#header #branding #site-name {
+    display: none;
+}
+#header #user-tools {
+    background-color: #4c9cc1;
+    float: none;
+    color: white;
+    padding: 9px 50px;
+    font-size: inherit;
+}
+div.breadcrumbs {
+    padding-left: 50px;
+    margin-top: -27px;
+    background: transparent;
+    border: 0;
+    font-weight: bold;
+    font-size: inherit;
+    color: white;
+}
+#content {
+    margin: 30px 50px;
+}
+body .submit-row {
+    padding: 20px 0 0 !important;
+    text-align: left;
+}
+body .submit-row label {
+    display: none;
+}
+body .object-tools a:link,
+body .object-tools a:visited {
+    color: white !important;
+}
+.module {
+    border: 0;
+    background: rgba(0,0,0,0.01);
+    margin-bottom: 10px;
+}
+.module h2 {
+    background: rgba(0,0,0,0.02);
+    color: black;
+}
+
+/* login stuff */
+.login #container {
+    width: 400px !important;
+}
+
+/* change password */
+#container {
+    width: 823px;
+}

@@ -1,0 +1,15 @@
+[
+    {
+        "fields": {
+            "inset_string": "67,236,1130,1300",
+            "mug_string": "67,56,188,178",
+            "name_string": "233,62",
+            "name_colour_string": "0,0,0",
+            "name_font": "static/fonts/weblysleek_ui/weblysleekuil.ttf",
+            "name_font_size": 72,
+            "url": "/static/frames/Social_Playground_Template_Printed_Photo CSquare.png"
+        },
+        "model": "soundproof.photoframe",
+        "pk": 1
+    }
+]
